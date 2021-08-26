@@ -1,7 +1,11 @@
+/* Name: bmpTest.c v0.0.1
+ * Date: 2021-08-26
+ * Intro: Render a colorChecker.
+ */
 #include "bmpEncoder.h"
 #include "bmpPalette.h"
 int main() {
-	int i, j;
+	int32_t i, j;
 	uint32_t absHeight, rowSize, pixelArraySize, offBits, size;
 	BMP bmp = BMPInit(16*6+1, -16*4-1, 8, 25, colorChecker25, &absHeight, &rowSize, 
 		&pixelArraySize, &offBits, &size);
