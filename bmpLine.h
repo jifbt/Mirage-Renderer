@@ -6,7 +6,7 @@
  * Note: Line in fractal rendering is always pixal to number coordination. 
  */
 #ifndef _BMPLINE_H
-#define _BMPLINE_H 0x000000
+#define _BMPLINE_H 0x000001
 
 #include <malloc.h>
 

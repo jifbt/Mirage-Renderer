@@ -1,11 +1,10 @@
-/* Name: bmpPalette v0.0.1
- * Date: 2021-08-22
- * Intro: Define some palette, such as gradient. Use with bmpEncoder higher than
- * v2.0.0.
- * Update: Rename PALETTE colorChecker to colorChecker25
+/* Name: bmpPalette v0.0.2
+ * Date: 2021-09-03
+ * Intro: Define some palettes. Use with bmpEncoder newer than v2.0.0.
+ * Update: Rename macro _BMPPALETTE to _BMPPALETTE_H
  */
-#ifndef _BMPPALETTE
-#define _BMPPALETTE 0x000000
+#ifndef _BMPPALETTE_H
+#define _BMPPALETTE_H 0x000002
 
 #include <stdint.h>
 

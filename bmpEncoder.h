@@ -4,7 +4,7 @@
  * Update: Fix some fatal bugs after testing.
  */
 #ifndef _BMPENCODER_H
-#define _BMPENCODER_H 0x020000
+#define _BMPENCODER_H 0x020001
 
 #include <stdio.h>
 #include <stdlib.h>
