@@ -6,7 +6,6 @@
 #ifndef _FRACTALITERATE_H
 #define _FRACTALITERATE_H 0x000000
 
-#include <assert.h>
 #include "bmpEncoder.h"
 #include "bmpLine.h"
 #include "bmpPalette.h"
