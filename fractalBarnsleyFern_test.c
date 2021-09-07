@@ -1,6 +1,7 @@
 /* Name: fractalBarnsleyFern_test.c v0.0.0
  * Date: 2021-09-03
- * Intro: Render Barnsley fern.
+ * Intro: Render Barnsley fern. See output at barnsleyFern_1.bmp and 
+ *			barnsleyFern_2.bmp.(File is big; *.zip on Github.)
  */
 #include "fractalBarnsleyFern.h"
 const int a = 8192;
@@ -27,10 +28,10 @@ float affine2[][6] = {
 uint32_t _gradWK2[] = {0xffffff, 0x000000};
 int main() {
 	fractalBarnsleyFern("barnsleyFern_1.bmp", a, a, 2, _gradWK2,
-		lineTwoPoints(0.0, -4, a, 4), lineTwoPoints(0.0, -4, a, 4), 268435456, 4,
+		lineTwoPoints(0.0, -4, a, 4), lineTwoPoints(0.0, -4, a, 4), 8388608, 4,
 		4, affine1, 0, 0);
 	fractalBarnsleyFern("barnsleyFern_2.bmp", a, a, 2, _gradWK2,
-		lineTwoPoints(0.0, -4, a, 4), lineTwoPoints(0.0, -4, a, 4), 268435456, 4,
+		lineTwoPoints(0.0, -4, a, 4), lineTwoPoints(0.0, -4, a, 4), 8388608, 4,
 		4, affine2, 0, 0);
 	return 0;
 }

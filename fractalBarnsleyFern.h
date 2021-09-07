@@ -1,13 +1,13 @@
-/* Name: fractalBarnsleyFern.h v0.0.1
- * Date: 2021-09-04
+/* Name: fractalBarnsleyFern.h v0.0.2
+ * Date: 2021-09-07
  * Intro: Render Barnsley ferns.
- * Note: Use OMP by defining the macro _FRACTAL_USE_OMP.
- * Update: Add argument branch to support OMP.
+ * Note: Use OMP by defining macro _FRACTAL_USE_OMP.
+ *		Use mt19937 by defining macro _FRACTAL_USE_MT19937
+ * Update: Able to use mt19937.
  */
 #ifndef _FRACTALBARNSLEYFERN_H
-#define _FRACTALBARNSLEYFERN_H 0x000001
+#define _FRACTALBARNSLEYFERN_H 0x000002
 
-#include <stdlib.h>
 #include <time.h>
 #include "bmpEncoder.h"
 #include "bmpLine.h"
@@ -15,6 +15,12 @@
 
 #ifdef _FRACTAL_USE_OMP
 #include <omp.h>
+#endif
+
+#ifdef _FRACTAL_USE_MT19937
+#include "mt19937ar/mt19937ar.c"
+#else
+#include <stdlib.h>
 #endif
 
 #ifdef __cplusplus
@@ -31,7 +37,11 @@ void fractalBarnsleyFern(char* path, int32_t width, int32_t height,
 		&pixelArraySize, &offBits, &size);
 	lineReverse(lineX);
 	lineReverse(lineY);
+#ifdef _FRACTAL_USE_MT19937
+	init_genrand(time(NULL));
+#else
 	srand(time(NULL));
+#endif
 #ifdef _FRACTAL_USE_OMP
 #pragma omp parallel for
 #endif
@@ -46,10 +56,13 @@ void fractalBarnsleyFern(char* path, int32_t width, int32_t height,
 				if(bmp[o] < clrUsed) {
 					++bmp[o];
 				}
-			} else {
-				puts("!");
 			}
+			
+#ifdef _FRACTAL_USE_MT19937
+			o = genrand_int32() % choice;
+#else
 			o = rand() % choice;
+#endif
 			t = affine[o][0] * p + affine[o][1] * q + affine[o][2];
 			q = affine[o][3] * p + affine[o][4] * q + affine[o][5];
 			p = t;
