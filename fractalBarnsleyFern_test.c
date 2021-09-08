@@ -1,11 +1,13 @@
-/* Name: fractalBarnsleyFern_test.c v0.0.0
- * Date: 2021-09-03
- * Intro: Render Barnsley fern. See output at barnsleyFern_1.bmp and 
- *			barnsleyFern_2.bmp.(File is big; *.zip on Github.)
+/* Name: fractalBarnsleyFern_test.c v0.0.1
+ * Date: 2021-09-08
+ * Intro: Render Barnsley ferns. See output at barnsleyFern_1.bmp and 
+ *		barnsleyFern_2.bmp.(File is big; *.zip on Github.)
+ * Update: Tiny changes to variable types.
  */
 #include "fractalBarnsleyFern.h"
+#include "bmpPalette.h"
 const int a = 8192;
-float affine1[][6] = {
+double affine1[][6] = {
 	{-0.4612054658106728, -0.18421622013526684, 0.8200018614245714,
 	0.15062308605687624, 0.41509321981152447, -0.5373931075075806},
 	{0.26327130338062843, 0.5142767793873098, -0.8317557319488103,
@@ -15,7 +17,7 @@ float affine1[][6] = {
 	{0.5859588616172846, -0.24440463574371707, 0.4884664320542753,
 	0.21812280807019113, 0.9922412572329409, -0.027338667080179624}
 };
-float affine2[][6] = {
+double affine2[][6] = {
 	{-0.8053954407762309, -0.18361422478483602, -0.9824207839520669,
 	-0.19690520535264744, -0.7507788290664514, 0.11991281795594189},
 	{0.10248461418228816, -0.5203002036913256, -0.79246827759979,
@@ -25,13 +27,12 @@ float affine2[][6] = {
 	{-0.28726876174143623, 0.286191988002406, -0.30939082334651413,
 	-0.33405646822768764, 0.1732377940493861, 0.6277837300242732}
 };
-uint32_t _gradWK2[] = {0xffffff, 0x000000};
 int main() {
-	fractalBarnsleyFern("barnsleyFern_1.bmp", a, a, 2, _gradWK2,
-		lineTwoPoints(0.0, -4, a, 4), lineTwoPoints(0.0, -4, a, 4), 8388608, 4,
+	fractalBarnsleyFern("barnsleyFern_1.bmp", a, a, 256, gradWK256,
+		lineTwoPoints(0, -4, a, 4), lineTwoPoints(0, -4, a, 4), 134217728, 4,
 		4, affine1, 0, 0);
-	fractalBarnsleyFern("barnsleyFern_2.bmp", a, a, 2, _gradWK2,
-		lineTwoPoints(0.0, -4, a, 4), lineTwoPoints(0.0, -4, a, 4), 8388608, 4,
+	fractalBarnsleyFern("barnsleyFern_2.bmp", a, a, 256, gradWK256,
+		lineTwoPoints(0, -4, a, 4), lineTwoPoints(0, -4, a, 4), 134217728, 4,
 		4, affine2, 0, 0);
 	return 0;
 }

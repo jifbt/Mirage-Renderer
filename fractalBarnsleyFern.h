@@ -1,17 +1,17 @@
-/* Name: fractalBarnsleyFern.h v0.0.2
- * Date: 2021-09-07
+/* Name: fractalBarnsleyFern.h v0.0.3
+ * Date: 2021-09-08
  * Intro: Render Barnsley ferns.
  * Note: Use OMP by defining macro _FRACTAL_USE_OMP.
- *		Use mt19937 by defining macro _FRACTAL_USE_MT19937
- * Update: Able to use mt19937.
+ *		Use mt19937 by defining macro _FRACTAL_USE_MT19937.
+ * Update: Tiny changes to argument types. Fix a bug that will generate the
+ *		incorrect color.
  */
 #ifndef _FRACTALBARNSLEYFERN_H
-#define _FRACTALBARNSLEYFERN_H 0x000002
+#define _FRACTALBARNSLEYFERN_H 0x000003
 
 #include <time.h>
 #include "bmpEncoder.h"
 #include "bmpLine.h"
-#include "bmpPalette.h"
 
 #ifdef _FRACTAL_USE_OMP
 #include <omp.h>
@@ -30,7 +30,7 @@ extern "C" {
 void fractalBarnsleyFern(char* path, int32_t width, int32_t height,
 					uint32_t clrUsed, PALETTE palette, LINE lineX, LINE lineY,
 					uint32_t repeat, uint32_t branch, uint32_t choice,
-					float affine[][6], float x, float y) {
+					double affine[][6], double x, double y) {
 	int32_t i;
 	uint32_t absHeight, rowSize, pixelArraySize, offBits, size;
 	BMP bmp = BMPInit(width, height, 8, clrUsed, palette, &absHeight, &rowSize, 
@@ -47,17 +47,20 @@ void fractalBarnsleyFern(char* path, int32_t width, int32_t height,
 #endif
 	for(i=0; i<branch; ++i) {
 		int32_t j, m, n, o;
-		float p=x, q=y, t;
+		double p=x, q=y, t;
 		for(j=0; j<repeat; ++j) {
 			m = lineSubstitute(lineY, q);
 			n = lineSubstitute(lineX, p);
 			if(m>=0 && m<width && n>=0 && n<absHeight) {
 				o = rowSize * m + n + offBits;
-				if(bmp[o] < clrUsed) {
+				/* A hack for not using critical to increase efficiency. */
+				if(bmp[o] < clrUsed - 1) {
 					++bmp[o];
 				}
+				if(bmp[o] == (uint32_t)clrUsed) {
+					--bmp[o];
+				}
 			}
-			
 #ifdef _FRACTAL_USE_MT19937
 			o = genrand_int32() % choice;
 #else
