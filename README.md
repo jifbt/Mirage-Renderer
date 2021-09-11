@@ -9,5 +9,11 @@ A repository to render fractals and encode bitmaps.
 - `fractalFeigenbaumGraph.h` renders [Logistic map](http://en.wikipedia.org/wiki/Logistic_map). **Might be renamed.**
 - `fractalIterate.h` renders [Mandelbrot set](http://en.wikipedia.org/wiki/Mandelbrot_set) and [Julia set](http://en.wikipedia.org/wiki/Julia_set). **Might be renamed and/or overwritten.**
 
+## Future work
+- Add comments in headers
+- Split headers into `.h` and `.c` files
+- Rename and/or overwrite the files noted above
+- Add more images
+
 ## Credits
 This lib uses [clibs/mt19937ar](https://github.com/clibs/mt19937ar) under BSD licence to generate random numbers.
