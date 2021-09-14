@@ -1,4 +1,4 @@
-# libFractal
+# Mirage-Renderer
 A repository to render fractals and encode bitmaps.
 
 ## Files
