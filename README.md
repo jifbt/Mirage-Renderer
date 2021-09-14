@@ -8,8 +8,8 @@ A repository to render fractals and encode bitmaps.
 - `fractalBarnsleyFern.h` renders [Barnsley fern](http://en.wikipedia.org/wiki/Barnsley_fern).
 - `fractalLogisticMap.h` renders [Logistic map](http://en.wikipedia.org/wiki/Logistic_map).
 - `fractalIterate.h` renders [Mandelbrot set](http://en.wikipedia.org/wiki/Mandelbrot_set) and [Julia set](http://en.wikipedia.org/wiki/Julia_set). **Might be renamed and/or overwritten.**
-- `gdiTemplate.h` and `gdiTemplate.c` provides an easier way to use gdi with c. They encapsulate the main function and callback function.
-- `SUGE.c` aims to simulate motions of celestial bodies. You can use file `SUGE` as a difault configure file; for more informations, see the code.
+- `gdiTemplate.h` and `gdiTemplate.c` provides an easier way to use gdi with c. They encapsulate the main function and the callback function.
+- `SUGE.c` aims to simulate motions of celestial bodies. You can use file `SUGE` as a default configure file; for more informations, see the code.
 
 ## Future work
 - Add comments in headers
