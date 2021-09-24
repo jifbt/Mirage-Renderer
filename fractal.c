@@ -1,7 +1,8 @@
-/* Name: fractal.c v0.0.0
- * Date: 2021-09-21
+/* Name: fractal.c v0.0.1
+ * Date: 2021-09-24
  * Intro: Render fractals.
- * Update: Combine fractals into one header and one source.
+ * Update: Functions fractalJuliaSet and fractalMandelbrotSet no longer
+ 		generate wrong range (0, clrUsed] but right [0, clrUsed).
  */
 #include "fractal.h"
 #if _FRACTAL_H != 0x000000
@@ -69,7 +70,7 @@ void fractalJuliaSet(char* path, int32_t width, int32_t height, uint32_t clrUsed
 				n = 2*m*n + y;
 				m = t;
 			}
-			bmp[rowSize * i + j + offBits] = k;
+			bmp[rowSize * i + j + offBits] = k - 1;
 		}
 	}
 	BMPsave(bmp, path);
@@ -124,7 +125,7 @@ void fractalMandelbrotSet(char* path, int32_t width, int32_t height, uint32_t cl
 				n = 2*m*n + y;
 				m = t;
 			}
-			bmp[rowSize * i + j + offBits] = k;
+			bmp[rowSize * i + j + offBits] = k - 1;
 		}
 	}
 	BMPsave(bmp, path);
